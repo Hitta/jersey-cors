@@ -40,10 +40,17 @@ or in web.xml
 ```
 
 ### CORS annotation
-The CORS annotation comes with sensible (allowing) defaults. You can override these by simply assigning new values in the annotaion e.g.:
+The CORS annotation comes with sensible (allowing) defaults. You can override these by simply assigning new values for the annotaion e.g.:
 ```java
-CORS
-@OPTIONS(methods={"OPTIONS,"POST"}, origin="www.mydomain.com", maxAge=3600)
+@CORS(origin="www.mydomain.com")
+@GET
+@Path("{id}")
+public Person get(@PathParam("id") int id){
+	...
+}
+
+@CORS(methods={"OPTIONS","POST"}, origin="www.mydomain.com", maxAge=3600)
+@OPTIONS
 @Path("{id}")
 public Response get(){
 	return Response.ok().build();
